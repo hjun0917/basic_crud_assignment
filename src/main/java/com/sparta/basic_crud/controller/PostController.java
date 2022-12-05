@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *  해당 클래스가 컨트롤러의 역할을 수행함을 명시해준다.
+ * Controller VS RestController 의 차이점을 알아보도록 하자.
+ */
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class PostController {
-
     private final PostService postService;
 
     @PostMapping("/post")
     public Post postContent(@RequestBody PostRequestDto postRequestDto) {
-       return postService.postContent(postRequestDto);
+        return postService.postContent(postRequestDto);
     }
 
     @GetMapping("/posts")
@@ -41,6 +44,5 @@ public class PostController {
     public DeleteResponseDto deleteContent(@PathVariable Long id, @RequestBody PostRequestDto postRequestDto) {
         return postService.deleteContent(id, postRequestDto);
     }
-
 
 }

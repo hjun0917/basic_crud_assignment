@@ -3,14 +3,11 @@ package com.sparta.basic_crud.dto;
 import com.sparta.basic_crud.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor // 모든 필드가 받을 인자를 각각 보내줘 -> 내가 모든 필드를 파라미터로 받는 생성자 만들어 놓을 때.
 public class PostResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

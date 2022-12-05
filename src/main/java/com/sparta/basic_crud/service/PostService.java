@@ -26,7 +26,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostResponseDto> getContent() {
-        List<Post> contents = postRepository.findAll();
+        List<Post> contents = postRepository.findAllByOrderByModifiedAtDesc();
         List<PostResponseDto> postResponseDtoList = new ArrayList<>();
         for (Post content : contents) {
             postResponseDtoList.add(new PostResponseDto(content, 200, "OK!"));
@@ -43,7 +43,7 @@ public class PostService {
     @Transactional
     public PostResponseDto updateContent(Long id, PostRequestDto postRequestDto) {
         Post post = checkPost(id);
-        if(post.getPassword().equals(postRequestDto.getPassword())) {
+        if (post.getPassword().equals(postRequestDto.getPassword())) {
             post.update(postRequestDto);
             return new PostResponseDto(post, 200, "OK!");
         }
@@ -53,7 +53,7 @@ public class PostService {
     @Transactional
     public DeleteResponseDto deleteContent(Long id, PostRequestDto postRequestDto) {
         Post post = checkPost(id);
-        if(post.getPassword().equals(postRequestDto.getPassword())) {
+        if (post.getPassword().equals(postRequestDto.getPassword())) {
             postRepository.delete(post);
             return new DeleteResponseDto(200, "OK!");
         }
